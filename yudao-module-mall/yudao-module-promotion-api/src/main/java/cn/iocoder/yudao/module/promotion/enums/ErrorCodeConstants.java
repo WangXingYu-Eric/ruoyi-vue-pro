@@ -66,4 +66,6 @@ public interface ErrorCodeConstants {
     ErrorCode COMBINATION_ACTIVITY_DELETE_FAIL_STATUS_NOT_CLOSED_OR_END = new ErrorCode(1013010003, "拼团活动未关闭或未结束，不能删除");
     ErrorCode COMBINATION_RECORD_NOT_EXISTS = new ErrorCode(1013010004, "拼团不存在");
 
+    // ========== 拼团活动 1013010000 ==========
+    ErrorCode COMBINATION_ACTIVITY_NOT_EXISTS = new ErrorCode(1013010000, "拼团活动不存在");
 }
