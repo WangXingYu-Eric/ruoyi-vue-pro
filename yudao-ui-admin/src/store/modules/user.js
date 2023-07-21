@@ -84,8 +84,8 @@ const user = {
         })
       })
     },
-    // 获取用户信息
-    GetInfo({ commit, state }) {
+     // 获取用户信息
+     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
         getInfo().then(res => {
           // 没有 data 数据，赋予个默认值

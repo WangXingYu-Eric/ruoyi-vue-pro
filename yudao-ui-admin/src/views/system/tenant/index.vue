@@ -64,6 +64,17 @@
         </template>
       </el-table-column>
       <el-table-column label="绑定域名" align="center" prop="domain" width="180" />
+      <el-table-column label="数据源" align="center" prop="dataSourceConfigId" width="100" >
+        <template v-slot="scope">
+          <el-tag type="success"> {{ getDataSourceConfigName(scope.row.dataSourceConfigId )}} </el-tag>
+        </template>
+      </el-table-column>
+      <el-form-item label="数据源" prop="dataSourceConfigId">
+          <el-select v-model="form.dataSourceConfigId" placeholder="请选择数据源" clearable>
+            <el-option v-for="config in dataSourceConfigs"
+                       :key="config.id" :label="config.name" :value="config.id"/>
+          </el-select>
+        </el-form-item>
       <el-table-column label="租户状态" align="center" prop="status">
         <template v-slot="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status"/>
@@ -120,6 +131,12 @@
         <el-form-item label="绑定域名" prop="domain">
           <el-input v-model="form.domain" placeholder="请输入绑定域名" />
         </el-form-item>
+        <el-form-item label="数据源" prop="dataSourceConfigId">
+          <el-select v-model="form.dataSourceConfigId" placeholder="请选择数据源" clearable>
+            <el-option v-for="config in dataSourceConfigs"
+                       :key="config.id" :label="config.name" :value="config.id"/>
+          </el-select>
+        </el-form-item>
         <el-form-item label="租户状态" prop="status">
           <el-radio-group v-model="form.status">
             <el-radio v-for="dict in this.getDictDatas(DICT_TYPE.COMMON_STATUS)"
@@ -139,6 +156,7 @@
 import { createTenant, updateTenant, deleteTenant, getTenant, getTenantPage, exportTenantExcel } from "@/api/system/tenant";
 import { CommonStatusEnum } from '@/utils/constants'
 import {getTenantPackageList} from "@/api/system/tenantPackage";
+import {getSimpleDataSourceConfigList} from "@/api/infra/dataSourceConfig";
 
 export default {
   name: "SystemTenant",
@@ -185,6 +203,7 @@ export default {
         domain: [{ required: true, message: "绑定域名不能为空", trigger: "blur" }],
         username: [{ required: true, message: "用户名称不能为空", trigger: "blur" }],
         password: [{ required: true, message: "用户密码不能为空", trigger: "blur" }],
+        datasourceConfigId: [{ required: true, message: "数据源不能为空", trigger: "blur" }],
       }
     };
   },
@@ -194,6 +213,10 @@ export default {
     getTenantPackageList().then(response => {
       this.packageList = response.data;
     })
+     // 获得数据源配置列表
+     getSimpleDataSourceConfigList().then(response => {
+      this.dataSourceConfigs = response.data;
+    });
   },
   methods: {
     /** 查询列表 */
@@ -223,6 +246,7 @@ export default {
         expireTime: undefined,
         domain: undefined,
         status: CommonStatusEnum.ENABLE,
+        dataSourceConfigId: 0, // 默认 0 为 master 主数据源
       };
       this.resetForm("form");
     },
@@ -308,6 +332,15 @@ export default {
         }
       }
       return '未知套餐';
+    },
+     /** 数据源格式化 */
+     getDataSourceConfigName(dataSourceConfigId) {
+      for (const item of this.dataSourceConfigs) {
+        if (item.id === dataSourceConfigId) {
+          return item.name;
+        }
+      }
+      return '未知数据源';
     }
   }
 };

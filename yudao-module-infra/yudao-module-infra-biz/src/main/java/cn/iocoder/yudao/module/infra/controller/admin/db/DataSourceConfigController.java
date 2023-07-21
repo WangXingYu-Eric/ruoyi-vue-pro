@@ -3,6 +3,7 @@ package cn.iocoder.yudao.module.infra.controller.admin.db;
 import cn.iocoder.yudao.framework.common.pojo.CommonResult;
 import cn.iocoder.yudao.module.infra.controller.admin.db.vo.DataSourceConfigCreateReqVO;
 import cn.iocoder.yudao.module.infra.controller.admin.db.vo.DataSourceConfigRespVO;
+import cn.iocoder.yudao.module.infra.controller.admin.db.vo.DataSourceConfigSimpleRespVO;
 import cn.iocoder.yudao.module.infra.controller.admin.db.vo.DataSourceConfigUpdateReqVO;
 import cn.iocoder.yudao.module.infra.convert.db.DataSourceConfigConvert;
 import cn.iocoder.yudao.module.infra.dal.dataobject.db.DataSourceConfigDO;
@@ -70,4 +71,10 @@ public class DataSourceConfigController {
         return success(DataSourceConfigConvert.INSTANCE.convertList(list));
     }
 
+    @GetMapping("/list-all-simple")
+    @Operation(summary = "获取数据源配置精简信息列表", description = "主要用于前端的下拉选项")
+    public CommonResult<List<DataSourceConfigSimpleRespVO>> getSimpleDataSourceConfigList() {
+        List<DataSourceConfigDO> list = dataSourceConfigService.getDataSourceConfigList();
+        return success(DataSourceConfigConvert.INSTANCE.convertList02(list));
+    }
 }

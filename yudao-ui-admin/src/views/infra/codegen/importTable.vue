@@ -36,7 +36,7 @@
 
 <script>
 import { getSchemaTableList, createCodegenList } from "@/api/infra/codegen";
-import {getDataSourceConfigList} from "@/api/infra/dataSourceConfig";
+import { getSimpleDataSourceConfigList } from "@/api/infra/dataSourceConfig";
 export default {
   data() {
     return {
@@ -100,7 +100,7 @@ export default {
     },
     /** 导入按钮操作 */
     handleImportTable() {
-      createCodegenList({
+      getSimpleDataSourceConfigList({
         dataSourceConfigId: this.queryParams.dataSourceConfigId,
         tableNames: this.tables
       }).then(res => {

@@ -49,6 +49,7 @@ import static java.util.Collections.emptyList;
 @Service
 @Validated
 @Slf4j
+@TenantDS // 工作流的 Service 必须添加 @TenantDS 注解。原因是，Flowable 使用事务，无法切换数据源，需要提使用 @TenantDS 切到它的数据源
 public class BpmProcessDefinitionServiceImpl implements BpmProcessDefinitionService {
 
     private static final String BPMN_FILE_SUFFIX = ".bpmn";

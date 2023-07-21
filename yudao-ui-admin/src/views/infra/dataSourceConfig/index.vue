@@ -36,7 +36,7 @@
           <el-input v-model="form.name" placeholder="请输入参数名称" />
         </el-form-item>
         <el-form-item label="数据源连接" prop="url">
-          <el-input v-model="form.url" placeholder="请输入数据源连接" />
+          <el-input type="textarea" v-model="form.url" placeholder="请输入数据源连接" :rows="6" />
         </el-form-item>
         <el-form-item label="用户名" prop="username">
           <el-input v-model="form.username" placeholder="请输入用户名" />
