@@ -1,6 +1,7 @@
 package cn.iocoder.yudao.module.system.mq.producer.sms;
 
 import cn.iocoder.yudao.framework.common.core.KeyValue;
+import cn.iocoder.yudao.framework.mq.core.RocketTemplate;
 import cn.iocoder.yudao.module.system.mq.message.sms.SmsChannelRefreshMessage;
 import cn.iocoder.yudao.module.system.mq.message.sms.SmsSendMessage;
 import cn.iocoder.yudao.module.system.mq.message.sms.SmsTemplateRefreshMessage;
@@ -24,6 +25,9 @@ public class SmsProducer {
     @Resource
     private RedisMQTemplate redisMQTemplate;
 
+    @Resource
+    private RocketTemplate rocketTemplate;
+
     /**
      * 发送 {@link SmsChannelRefreshMessage} 消息
      */
@@ -37,7 +41,7 @@ public class SmsProducer {
      */
     public void sendSmsTemplateRefreshMessage() {
         SmsTemplateRefreshMessage message = new SmsTemplateRefreshMessage();
-        redisMQTemplate.send(message);
+        rocketTemplate.send(message);
     }
 
     /**
@@ -53,7 +57,7 @@ public class SmsProducer {
                                    Long channelId, String apiTemplateId, List<KeyValue<String, Object>> templateParams) {
         SmsSendMessage message = new SmsSendMessage().setLogId(logId).setMobile(mobile);
         message.setChannelId(channelId).setApiTemplateId(apiTemplateId).setTemplateParams(templateParams);
-        redisMQTemplate.send(message);
+        rocketTemplate.send(message);
     }
 
 }
