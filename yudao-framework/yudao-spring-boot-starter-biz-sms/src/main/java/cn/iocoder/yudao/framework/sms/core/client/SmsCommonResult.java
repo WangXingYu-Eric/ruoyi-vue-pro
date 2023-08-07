@@ -44,17 +44,17 @@ public class SmsCommonResult<T> extends CommonResult<T> {
 
     public static <T> SmsCommonResult<T> build(String apiCode, String apiMsg, String apiRequestId,
                                                T data, SmsCodeMapping codeMapping) {
-        Assert.notNull(codeMapping, "参数 codeMapping 不能为空");
+//        Assert.notNull(codeMapping, "参数 codeMapping 不能为空");
         SmsCommonResult<T> result = new SmsCommonResult<T>().setApiCode(apiCode).setApiMsg(apiMsg).setApiRequestId(apiRequestId);
         result.setData(data);
-        // 翻译错误码
-        if (codeMapping != null) {
-            ErrorCode errorCode = codeMapping.apply(apiCode);
-            if (errorCode == null) {
-                errorCode = SmsFrameworkErrorCodeConstants.SMS_UNKNOWN;
-            }
-            result.setCode(errorCode.getCode()).setMsg(errorCode.getMsg());
-        }
+        // TODO 删除翻译错误码功能
+//        if (codeMapping != null) {
+//            ErrorCode errorCode = codeMapping.apply(apiCode);
+//            if (errorCode == null) {
+//                errorCode = SmsFrameworkErrorCodeConstants.SMS_UNKNOWN;
+//            }
+            result.setCode(0);
+//        }
         return result;
     }
 

@@ -29,7 +29,7 @@ public class SmsChannelProperties {
     private String signature;
     /**
      * 渠道编码
-     *
+     * <p>
      * 枚举 {@link SmsChannelEnum}
      */
     @NotEmpty(message = "渠道编码不能为空")
@@ -44,6 +44,10 @@ public class SmsChannelProperties {
      */
     @NotEmpty(message = "短信 API 的密钥不能为空")
     private String apiSecret;
+    /**
+     * 国内短信签名通道号
+     */
+    private String sender;
     /**
      * 短信发送回调 URL
      */

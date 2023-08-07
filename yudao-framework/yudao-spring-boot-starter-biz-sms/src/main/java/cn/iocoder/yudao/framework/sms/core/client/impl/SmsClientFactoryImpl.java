@@ -4,6 +4,7 @@ import cn.iocoder.yudao.framework.sms.core.client.SmsClient;
 import cn.iocoder.yudao.framework.sms.core.client.SmsClientFactory;
 import cn.iocoder.yudao.framework.sms.core.client.impl.aliyun.AliyunSmsClient;
 import cn.iocoder.yudao.framework.sms.core.client.impl.debug.DebugDingTalkSmsClient;
+import cn.iocoder.yudao.framework.sms.core.client.impl.huawei.HuaweiSmsClient;
 import cn.iocoder.yudao.framework.sms.core.client.impl.tencent.TencentSmsClient;
 import cn.iocoder.yudao.framework.sms.core.enums.SmsChannelEnum;
 import cn.iocoder.yudao.framework.sms.core.property.SmsChannelProperties;
@@ -81,6 +82,7 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
             case ALIYUN: return new AliyunSmsClient(properties);
             case DEBUG_DING_TALK: return new DebugDingTalkSmsClient(properties);
             case TENCENT: return new TencentSmsClient(properties);
+            case HUA_WEI: return new HuaweiSmsClient(properties);
         }
         // 创建失败，错误日志 + 抛出异常
         log.error("[createSmsClient][配置({}) 找不到合适的客户端实现]", properties);
