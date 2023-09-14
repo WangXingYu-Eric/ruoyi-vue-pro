@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.validation.Validator;
 import java.time.LocalDateTime;
@@ -66,8 +65,7 @@ public class FileConfigServiceImpl implements FileConfigService {
     @Resource
     private Validator validator;
 
-    @PostConstruct
-    //    @PostConstruct
+//    @PostConstruct
     public void initLocalCache() {
         // 第一步：查询数据
         List<FileConfigDO> configs = fileConfigMapper.selectList();
