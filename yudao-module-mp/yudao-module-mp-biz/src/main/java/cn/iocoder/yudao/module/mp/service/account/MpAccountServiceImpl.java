@@ -24,7 +24,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -64,7 +63,7 @@ public class MpAccountServiceImpl implements MpAccountService {
     private MpServiceFactory mpServiceFactory;
 
     @Override
-    @PostConstruct
+//    @PostConstruct
     public void initLocalCache() {
         // 注意：忽略自动多租户，因为要全局初始化缓存
         TenantUtils.executeIgnore(() -> {

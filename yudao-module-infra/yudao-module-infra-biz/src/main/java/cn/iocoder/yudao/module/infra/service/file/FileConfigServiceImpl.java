@@ -67,6 +67,7 @@ public class FileConfigServiceImpl implements FileConfigService {
     private Validator validator;
 
     @PostConstruct
+    //    @PostConstruct
     public void initLocalCache() {
         // 第一步：查询数据
         List<FileConfigDO> configs = fileConfigMapper.selectList();

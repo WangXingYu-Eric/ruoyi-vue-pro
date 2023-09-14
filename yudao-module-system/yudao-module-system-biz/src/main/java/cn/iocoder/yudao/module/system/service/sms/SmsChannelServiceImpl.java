@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -52,7 +51,7 @@ public class SmsChannelServiceImpl implements SmsChannelService {
     private SmsTemplateService smsTemplateService;
 
     @Override
-    @PostConstruct
+//    @PostConstruct
     public void initLocalCache() {
         // 第一步：查询数据
         List<SmsChannelDO> channels = smsChannelMapper.selectList();

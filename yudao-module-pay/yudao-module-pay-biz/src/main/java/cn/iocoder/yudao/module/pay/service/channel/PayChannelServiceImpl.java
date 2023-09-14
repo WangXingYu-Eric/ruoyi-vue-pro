@@ -61,7 +61,7 @@ public class PayChannelServiceImpl implements PayChannelService {
     /**
      * 初始化 {@link #payClientFactory} 缓存
      */
-    @PostConstruct
+//    @PostConstruct
     public void initLocalCache() {
         // 注册钱包支付 Class
         payClientFactory.registerPayClientClass(PayChannelEnum.WALLET, WalletPayClient.class);

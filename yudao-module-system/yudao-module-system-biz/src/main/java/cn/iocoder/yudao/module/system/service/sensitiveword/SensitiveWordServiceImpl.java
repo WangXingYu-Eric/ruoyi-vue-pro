@@ -73,7 +73,7 @@ public class SensitiveWordServiceImpl implements SensitiveWordService {
     /**
      * 初始化缓存
      */
-    @PostConstruct
+//    @PostConstruct
     public void initLocalCache() {
         // 第一步：查询数据
         List<SensitiveWordDO> sensitiveWords = sensitiveWordMapper.selectList();
