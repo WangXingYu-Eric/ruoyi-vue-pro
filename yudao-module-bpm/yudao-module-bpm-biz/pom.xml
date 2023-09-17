@@ -62,7 +62,9 @@
         <dependency>
             <groupId>cn.iocoder.boot</groupId>
             <artifactId>yudao-spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
+
         <!-- 工作流相关 -->
         <dependency>
             <groupId>cn.iocoder.boot</groupId>

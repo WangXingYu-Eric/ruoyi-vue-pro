@@ -1,0 +1,5 @@
+### 请求 /bpm/oa/leave/create 接口 => 成功
+GET {{baseUrl}}/im/hello/echo
+Content-Type: application/json
+tenant-id: 1
+Authorization: Bearer {{token}}
